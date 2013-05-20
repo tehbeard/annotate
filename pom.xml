@@ -9,5 +9,10 @@
   		<artifactId>BeardAch</artifactId>
   		<version>0.5-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  	  <groupId>com.tehbeard.twobyfour</groupId>
+  <artifactId>TwoByFour</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>
