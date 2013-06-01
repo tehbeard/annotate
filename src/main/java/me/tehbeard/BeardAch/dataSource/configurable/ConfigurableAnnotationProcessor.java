@@ -1,4 +1,4 @@
-package com.tehbeard.annotations;
+package me.tehbeard.BeardAch.dataSource.configurable;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -9,7 +9,6 @@ import javax.lang.model.element.*;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 
-import me.tehbeard.BeardAch.dataSource.configurable.Configurable;
 
 
 @SuppressWarnings("restriction")
