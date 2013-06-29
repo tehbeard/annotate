@@ -6,4 +6,18 @@
   <name>annotation collection</name>
   <url>github.com/tehbeard/annotate</url>
   <description>Collection of annotations and associated processors used in various projects</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.bukkit</groupId>
+  		<artifactId>bukkit</artifactId>
+  		<version>1.5.2-R1.0</version>
+  	</dependency>
+  </dependencies>
+  
+  <repositories>
+		<repository>
+			<id>bukkit-repo</id>
+			<url>http://repo.bukkit.org/content/groups/public/</url>
+		</repository>
+	</repositories>
 </project>

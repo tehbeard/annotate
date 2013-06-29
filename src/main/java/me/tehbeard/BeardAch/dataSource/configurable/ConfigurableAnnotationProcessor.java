@@ -21,7 +21,7 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 		super.init(processingEnv);
 		
 		try {
-			classOut = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT, "", "components.txt", null).openWriter();
+			classOut = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT, "", "components.txt", (Element[])null).openWriter();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +34,6 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 		Set<? extends Element> eles = roundEnv.getElementsAnnotatedWith(Configurable.class);
 		for(Element ele  : eles){
 			Configurable c = ele.getAnnotation(Configurable.class);
-
 			processingEnv.getMessager().printMessage(Kind.NOTE, "Found configurable: " + c.tag() + " on " + ele.getSimpleName() + " @ " + getPackage(ele));
 			try {
 				classOut.write(getPackage(ele) + "\n");
