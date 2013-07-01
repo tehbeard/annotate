@@ -14,10 +14,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("com.tehbeard.utils.PluginMod")
+@SupportedAnnotationTypes({"com.tehbeard.utils.PluginMod","com.tehbeard.utils.CommandMod"})
 public class PluginProcessor extends AbstractProcessor{
 
     private Writer yaml;
+    YamlConfiguration yc = new YamlConfiguration();
 
 
     public void init(ProcessingEnvironment processingEnv) {
@@ -36,29 +37,39 @@ public class PluginProcessor extends AbstractProcessor{
         for(Element ele : eles){
             System.out.println(getFullClass(ele));
 
-            try {
                 PluginMod mod = ele.getAnnotation(PluginMod.class);
-                
-                YamlConfiguration yc = new YamlConfiguration();
                 yc.set("main" , getFullClass(ele));
                 yc.set("name" , mod.name());
                 yc.set("version" , mod.version());
-                yaml.write(yc.saveToString());
-                /*yaml.write("main :" + getFullClass(ele)+"\n");
+                yc.set("description",orNull(mod.description()));
+                yc.set("website",orNull(mod.website()));
+                yc.set("load",orNull(mod.load()));
+                yc.set("authors",orNull(mod.authors()));
+                yc.set("depend",orNull(mod.depend()));
+                yc.set("softdepend",orNull(mod.softdepend()));
+                yc.set("loadbefore",orNull(mod.loadbefore()));
+                yc.set("database",orNull(mod.database()));
 
-                yaml.write("name :" + mod.name() + "\n");
-                yaml.write("version :" + mod.version() + "\n");*/
-                yaml.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+         }
 
         return false;
     }
 
     private String getFullClass(Element ele){
         return ((PackageElement)ele.getEnclosingElement()).getQualifiedName() + "." + ele.getSimpleName();
+    }
+
+    private Object orNull(Object o){
+      if(o instanceof String){
+        if(((String)o).length() == 0){return null;}
+      }
+
+      if(o instanceof String[]){
+        if(((String[])o).length == 0){return null;}
+      }
+
+
+      return o;
     }
 
 }
