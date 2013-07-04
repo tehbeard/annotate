@@ -12,6 +12,8 @@ import javax.tools.StandardLocation;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.tehbeard.utils.PluginMod.LoadType;
+
 
 @SuppressWarnings("restriction")
 @SupportedAnnotationTypes({"com.tehbeard.utils.PluginMod","com.tehbeard.utils.CommandMod","com.tehbeard.utils.MultiCommandMod"})
@@ -45,7 +47,7 @@ public class PluginProcessor extends AbstractProcessor{
             yc.set("version" , mod.version());
             yc.set("description",orNull(mod.description()));
             yc.set("website",orNull(mod.website()));
-            yc.set("load",orNull(mod.load()));
+            yc.set("load",(mod.load() ==LoadType.POSTWORLD ? null : mod.load().toString()));
             yc.set("authors",orNull(mod.authors()));
             yc.set("depend",orNull(mod.depend()));
             yc.set("softdepend",orNull(mod.softdepend()));
