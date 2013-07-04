@@ -14,7 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("com.tehbeard.utils.PluginMod")
+@SupportedAnnotationTypes({"com.tehbeard.utils.PluginMod","com.tehbeard.utils.CommandMod"})
 public class PluginProcessor extends AbstractProcessor{
 
     private Writer yaml;
@@ -38,14 +38,21 @@ public class PluginProcessor extends AbstractProcessor{
             System.out.println(getFullClass(ele));
 
                 PluginMod mod = ele.getAnnotation(PluginMod.class);
-
-                
                 yc.set("main" , getFullClass(ele));
                 yc.set("name" , mod.name());
                 yc.set("version" , mod.version());
+                yc.set("description",orNull(mod.description()));
+                yc.set("website",orNull(mod.website()));
+                yc.set("load",orNull(mod.load()));
+                yc.set("authors",orNull(mod.authors()));
+                yc.set("depend",orNull(mod.depend()));
+                yc.set("softdepend",orNull(mod.softdepend()));
+                yc.set("loadbefore",orNull(mod.loadbefore()));
+                yc.set("database",orNull(mod.database()));
 
-
-        }
+         }
+        
+        //TODO - Command permissions
         
         if(roundenv.processingOver()){
             try {
@@ -63,6 +70,19 @@ public class PluginProcessor extends AbstractProcessor{
 
     private String getFullClass(Element ele){
         return ((PackageElement)ele.getEnclosingElement()).getQualifiedName() + "." + ele.getSimpleName();
+    }
+
+    private Object orNull(Object o){
+      if(o instanceof String){
+        if(((String)o).length() == 0){return null;}
+      }
+
+      if(o instanceof String[]){
+        if(((String[])o).length == 0){return null;}
+      }
+
+
+      return o;
     }
 
 }
