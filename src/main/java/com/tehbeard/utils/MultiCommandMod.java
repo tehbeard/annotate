@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
 public @interface MultiCommandMod {
-CommandMod[] commands() default {};
+CommandMod[] value() default {};
 }

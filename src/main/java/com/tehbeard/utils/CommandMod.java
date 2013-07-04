@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface CommandMod {
 String name();
-String permission();
+String permission() default "";
 String usage() default "/<command>";
 String description() default "";
 String[] alias() default {};
