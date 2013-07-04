@@ -18,6 +18,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class PluginProcessor extends AbstractProcessor{
 
     private Writer yaml;
+    YamlConfiguration yc = new YamlConfiguration();
 
 
     public void init(ProcessingEnvironment processingEnv) {
@@ -36,22 +37,25 @@ public class PluginProcessor extends AbstractProcessor{
         for(Element ele : eles){
             System.out.println(getFullClass(ele));
 
-            try {
                 PluginMod mod = ele.getAnnotation(PluginMod.class);
+
                 
-                YamlConfiguration yc = new YamlConfiguration();
                 yc.set("main" , getFullClass(ele));
                 yc.set("name" , mod.name());
                 yc.set("version" , mod.version());
-                yaml.write(yc.saveToString());
-                /*yaml.write("main :" + getFullClass(ele)+"\n");
 
-                yaml.write("name :" + mod.name() + "\n");
-                yaml.write("version :" + mod.version() + "\n");*/
+
+        }
+        
+        if(roundenv.processingOver()){
+            try {
+                yaml.write(yc.saveToString());
                 yaml.flush();
             } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+            
         }
 
         return false;
