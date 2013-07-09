@@ -1,4 +1,4 @@
-package me.tehbeard.BeardAch.dataSource.configurable;
+package com.tehbeard.annotations;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -8,6 +8,8 @@ import javax.annotation.processing.*;
 import javax.lang.model.element.*;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
+
+import me.tehbeard.BeardAch.dataSource.configurable.Configurable;
 
 
 
