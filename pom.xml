@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tehbeard.annotate</groupId>
   <artifactId>annotate</artifactId>
-  <version>1.3</version>
+  <version>1.3.1</version>
   <name>annotation collection</name>
   <url>github.com/tehbeard/annotate</url>
   <description>Collection of annotations and associated processors used in various projects</description>

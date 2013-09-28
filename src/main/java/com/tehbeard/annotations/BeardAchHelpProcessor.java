@@ -94,11 +94,11 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
                 output.flush();
 
                 if(c.type() == ComponentType.TRIGGER){
-                    tContents += "<br><a href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
+                    tContents += "<br><a target='main' href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
                 }
                 
                 if(c.type() == ComponentType.REWARD){
-                    rContents += "<br><a href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
+                    rContents += "<br><a target='main' href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
                 }
 
                 /*output.write("Name: " + c.name());
