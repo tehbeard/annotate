@@ -19,6 +19,7 @@ import com.tehbeard.utils.CallbackMatcher.Callback;
 
 import me.tehbeard.BeardAch.dataSource.json.editor.EditorField;
 import me.tehbeard.BeardAch.dataSource.json.help.ComponentHelpDescription;
+import me.tehbeard.BeardAch.dataSource.json.help.ComponentType;
 import me.tehbeard.BeardAch.dataSource.json.help.ComponentValueDescription;
 
 
@@ -32,6 +33,10 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
     String html = "";
 
     String paramFragment = "";
+
+
+    String tContents = "";
+    String rContents = "";
 
     public void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
@@ -62,7 +67,7 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
 
                     EditorField ef = field.getAnnotation(EditorField.class);
                     if(ef == null){continue;}
-                    
+
                     final Map<String,String> pData = new HashMap<String, String>();
                     pData.put("alias", ef.alias());
                     pData.put("type", ef.type().label);
@@ -78,7 +83,7 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
                     }
                     tmpParams += processTemplate(pData, paramFragment) + "\n";
                 }
-                
+
                 data.put("params", tmpParams);
 
 
@@ -86,7 +91,15 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
 
 
                 output.write(processTemplate(data, html));
+                output.flush();
 
+                if(c.type() == ComponentType.TRIGGER){
+                    tContents += "<br><a href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
+                }
+                
+                if(c.type() == ComponentType.REWARD){
+                    rContents += "<br><a href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
+                }
 
                 /*output.write("Name: " + c.name());
 				 output.write("\n");
@@ -103,6 +116,23 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
             }
         }
 
+        if(roundEnv.processingOver()){
+            Writer contentsFile;
+            try {
+                contentsFile = openFile("editor/help/contents.html");
+
+                contentsFile.write("<h4>Triggers</h4>");
+                contentsFile.write(tContents);
+                contentsFile.write("<h4>Rewards</h4>");
+                contentsFile.write(rContents);
+                contentsFile.flush();
+                contentsFile.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
         return false;
     }
 
