@@ -6,8 +6,13 @@ package me.tehbeard.BeardAch.dataSource.json.editor;
  *
  */
 public enum EditorFieldType {
-text,
-bool,
-location,
-cuboid
+text("Text"),
+bool("Boolean"),
+location("Location"),
+cuboid("Cuboid");
+
+public final String label;
+private EditorFieldType(String label) {
+    this.label = label;
+}
 }
