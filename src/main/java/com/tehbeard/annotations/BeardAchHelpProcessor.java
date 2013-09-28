@@ -70,7 +70,11 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
                     ComponentValueDescription vd = field.getAnnotation(ComponentValueDescription.class);
                     if(vd!=null){
                         pData.put("description", vd.description());
-                        pData.put("examples", vd.examples().length > 0 ? Arrays.toString(vd.examples()) : "");
+                        String example = "";
+                        for(String e : vd.examples()){
+                            example += e + "\n";
+                        }
+                        pData.put("examples", example);
                     }
                     tmpParams += processTemplate(pData, paramFragment) + "\n";
                 }
