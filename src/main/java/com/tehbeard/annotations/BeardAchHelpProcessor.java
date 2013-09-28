@@ -91,7 +91,6 @@ public class BeardAchHelpProcessor extends AbstractProcessor {
 
 
                 output.write(processTemplate(data, html));
-                output.flush();
 
                 if(c.type() == ComponentType.TRIGGER){
                     tContents += "<br><a target='main' href='" + c.type().toString().toLowerCase() + "/" + ele.getSimpleName() + ".html" + "'>" + c.name() + "</a>\n";
