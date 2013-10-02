@@ -8,25 +8,31 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 import javax.tools.StandardLocation;
+
+import org.bukkit.configuration.serialization.SerializableAs;
 
 import com.tehbeard.twobyfour.annotations.PlankLabel;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("com.tehbeard.twobyfour.annotations.PlankLabel")
+@SupportedAnnotationTypes({"com.tehbeard.twobyfour.annotations.PlankLabel","org.bukkit.configuration.serialization.SerializableAs"})
 public class PlankProcessor extends AbstractProcessor {
 	
 	
 	private Writer planks = null;
+	
+	private Writer serializers = null;
 	
 	public PlankProcessor(){
 		super();
 		
 		try {
 			planks = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT , "", "planks.txt", (Element[])null).openWriter();
+			serializers = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT , "", "serialize.txt", (Element[])null).openWriter();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,11 +46,35 @@ public class PlankProcessor extends AbstractProcessor {
 		for(Element ele  : eles){
 			PlankLabel c = ele.getAnnotation(PlankLabel.class);
 			processingEnv.getMessager().printMessage(Kind.NOTE, "Plank found: " + c.id());
-			//planks.write(ele.getSimpleName());
+			try {
+                planks.write(getPackage(ele) + "\n");
+                planks.flush();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+			
 			
 		}
+		
+		eles = roundEnv.getElementsAnnotatedWith(SerializableAs.class);
+        for(Element ele  : eles){
+            try {
+                planks.write(getPackage(ele) + "\n");
+                planks.flush();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            
+        }
 		 
 		return false;
 	}
+	
+	private String getPackage(Element ele){
+        return ((PackageElement)ele.getEnclosingElement()).getQualifiedName() + "." + ele.getSimpleName();
+    }
 
 }

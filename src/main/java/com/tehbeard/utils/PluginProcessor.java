@@ -35,11 +35,15 @@ public class PluginProcessor extends AbstractProcessor{
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundenv) {
 
+        
+        
         Set<? extends Element> eles = roundenv.getElementsAnnotatedWith(PluginMod.class);
         for(Element ele : eles){
             System.out.println("Found Plugin class: " + getFullClass(ele));
-
+            
             //TODO - TYPE CHECK FOR implements Plugin
+            
+            
 
             PluginMod mod = ele.getAnnotation(PluginMod.class);
             yc.set("main" , getFullClass(ele));
