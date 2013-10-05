@@ -56,7 +56,7 @@ public class PluginProcessor extends AbstractProcessor{
             yc.set("depend",orNull(mod.depend()));
             yc.set("softdepend",orNull(mod.softdepend()));
             yc.set("loadbefore",orNull(mod.loadbefore()));
-            yc.set("database",orNull(mod.database()));
+            if(mod.database()){yc.set("database",true);}
 
         }
 
