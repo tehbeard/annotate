@@ -9,7 +9,8 @@ public enum EditorFieldType {
 text("Text"),
 bool("Boolean"),
 location("Location"),
-cuboid("Cuboid");
+cuboid("Cuboid"),
+trigger("Trigger list");
 
 public final String label;
 private EditorFieldType(String label) {
