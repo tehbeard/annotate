@@ -7,4 +7,5 @@ import java.lang.annotation.RetentionPolicy;
 public @interface EditorField {
 String alias();
 EditorFieldType type() default EditorFieldType.text;
+String[] options() default "";
 }

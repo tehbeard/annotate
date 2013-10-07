@@ -10,7 +10,8 @@ text("Text"),
 bool("Boolean"),
 location("Location"),
 cuboid("Cuboid"),
-trigger("Trigger list");
+trigger("Trigger list"),
+selection("Selection");
 
 public final String label;
 private EditorFieldType(String label) {
