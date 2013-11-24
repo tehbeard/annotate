@@ -14,7 +14,7 @@ import com.tehbeard.beardach.dataSource.configurable.Configurable;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("me.tehbeard.BeardAch.dataSource.configurable.Configurable")
+@SupportedAnnotationTypes("com.tehbeard.beardach.dataSource.configurable.Configurable")
 public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 	
 	private Writer classOut = null;

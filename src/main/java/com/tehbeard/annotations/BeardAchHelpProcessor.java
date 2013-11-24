@@ -25,7 +25,7 @@ import com.tehbeard.beardach.dataSource.json.help.ComponentValueDescription;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("me.tehbeard.BeardAch.dataSource.json.help.ComponentHelpDescription")
+@SupportedAnnotationTypes("com.tehbeard.beardach.dataSource.json.help.ComponentHelpDescription")
 public class BeardAchHelpProcessor extends AbstractProcessor {
 
     CallbackMatcher matcher = new CallbackMatcher("\\$\\{([A-Za-z0-9_]*)\\}");
