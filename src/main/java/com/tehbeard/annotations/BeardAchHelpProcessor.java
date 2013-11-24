@@ -17,10 +17,10 @@ import javax.tools.Diagnostic.Kind;
 import com.tehbeard.utils.CallbackMatcher;
 import com.tehbeard.utils.CallbackMatcher.Callback;
 
-import me.tehbeard.BeardAch.dataSource.json.editor.EditorField;
-import me.tehbeard.BeardAch.dataSource.json.help.ComponentHelpDescription;
-import me.tehbeard.BeardAch.dataSource.json.help.ComponentType;
-import me.tehbeard.BeardAch.dataSource.json.help.ComponentValueDescription;
+import com.tehbeard.beardach.dataSource.json.editor.EditorField;
+import com.tehbeard.beardach.dataSource.json.help.ComponentHelpDescription;
+import com.tehbeard.beardach.dataSource.json.help.ComponentType;
+import com.tehbeard.beardach.dataSource.json.help.ComponentValueDescription;
 
 
 

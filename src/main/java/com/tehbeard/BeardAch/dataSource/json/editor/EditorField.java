@@ -1,4 +1,4 @@
-package me.tehbeard.BeardAch.dataSource.json.editor;
+package com.tehbeard.beardach.dataSource.json.editor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

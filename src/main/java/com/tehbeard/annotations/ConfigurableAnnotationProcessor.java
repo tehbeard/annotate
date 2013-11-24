@@ -9,7 +9,7 @@ import javax.lang.model.element.*;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 
-import me.tehbeard.BeardAch.dataSource.configurable.Configurable;
+import com.tehbeard.beardach.dataSource.configurable.Configurable;
 
 
 

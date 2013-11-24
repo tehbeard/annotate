@@ -1,4 +1,4 @@
-package me.tehbeard.BeardAch.dataSource.json.help;
+package com.tehbeard.beardach.dataSource.json.help;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

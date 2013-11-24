@@ -1,4 +1,4 @@
-package me.tehbeard.BeardAch.dataSource.json.editor;
+package com.tehbeard.beardach.dataSource.json.editor;
 
 /**
  * Declares the type of interface to use in the editor for a plugin's parameter
