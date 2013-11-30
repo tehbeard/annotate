@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.*;
+import javax.lang.model.type.TypeMirror;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 
@@ -35,6 +36,12 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 			RoundEnvironment roundEnv) {
 		Set<? extends Element> eles = roundEnv.getElementsAnnotatedWith(Configurable.class);
 		for(Element ele  : eles){
+		    
+		    if(!Utils.typeImplements(processingEnv,ele.asType(),"com.tehbeard.beardach.datasource.configurable.IConfigurable")){
+		        processingEnv.getMessager().printMessage(Kind.NOTE,"Class " + ele.asType() + " does not implement IConfigurable");
+		        throw new RuntimeException("Class " + ele.asType() + " does not implement IConfigurable");
+		    }
+		   
 			Configurable c = ele.getAnnotation(Configurable.class);
                         if(c == null){
                             processingEnv.getMessager().printMessage(Kind.ERROR,"Failure" + ele.getSimpleName() +"@" + getPackage(ele) + " has a null Configurable tag error!");

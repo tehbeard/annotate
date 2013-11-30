@@ -8,10 +8,12 @@ import javax.annotation.processing.*;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+
 import javax.tools.StandardLocation;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.tehbeard.annotations.Utils;
 import com.tehbeard.utils.PluginMod.LoadType;
 
 
@@ -41,8 +43,10 @@ public class PluginProcessor extends AbstractProcessor{
         for(Element ele : eles){
             System.out.println("Found Plugin class: " + getFullClass(ele));
             
-            //TODO - TYPE CHECK FOR implements Plugin
             
+            if(!Utils.typeImplements(processingEnv, ele.asType(), "org.bukkit.plugin.java.JavaPlugin")){
+                throw new RuntimeException("Class " + ele.asType() + " does not implement JavaPlugin");
+            }
             
 
             PluginMod mod = ele.getAnnotation(PluginMod.class);
@@ -118,4 +122,5 @@ public class PluginProcessor extends AbstractProcessor{
         yc.set(cb + "usage",orNull(cmod.usage()));
     }
 
+   
 }
