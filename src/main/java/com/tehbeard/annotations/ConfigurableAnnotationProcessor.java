@@ -1,5 +1,6 @@
 package com.tehbeard.annotations;
 
+import com.tehbeard.beardach.annotations.Configurable;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Set;
@@ -9,12 +10,11 @@ import javax.lang.model.element.*;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 
-import com.tehbeard.beardach.dataSource.configurable.Configurable;
 
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("com.tehbeard.beardach.dataSource.configurable.Configurable")
+@SupportedAnnotationTypes("com.tehbeard.beardach.annotations.Configurable")
 public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 	
 	private Writer classOut = null;
@@ -36,7 +36,12 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 		Set<? extends Element> eles = roundEnv.getElementsAnnotatedWith(Configurable.class);
 		for(Element ele  : eles){
 			Configurable c = ele.getAnnotation(Configurable.class);
-			processingEnv.getMessager().printMessage(Kind.NOTE, "Found configurable: " + c.tag() + " on " + ele.getSimpleName() + " @ " + getPackage(ele));
+                        if(c == null){
+                            processingEnv.getMessager().printMessage(Kind.ERROR,"Failure" + ele.getSimpleName() +"@" + getPackage(ele) + " has a null Configurable tag error!");
+                        }
+                        
+			processingEnv.getMessager().printMessage(Kind.NOTE, "Found configurable: " + c.tag());
+                        processingEnv.getMessager().printMessage(Kind.NOTE, "on " + ele.getSimpleName() + " @ " + getPackage(ele));
 			try {
 				classOut.write(getPackage(ele) + "\n");
 				classOut.flush();

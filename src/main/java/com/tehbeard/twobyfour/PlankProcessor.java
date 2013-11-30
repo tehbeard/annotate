@@ -20,7 +20,7 @@ import com.tehbeard.twobyfour.annotations.PlankLabel;
 
 
 @SuppressWarnings("restriction")
-@SupportedAnnotationTypes("com.tehbeard.twobyfour.annotations.PlankLabel")
+@SupportedAnnotationTypes({"com.tehbeard.twobyfour.annotations.PlankLabel","org.bukkit.configuration.serialization.SerializableAs"})
 public class PlankProcessor extends AbstractProcessor {
 
 
