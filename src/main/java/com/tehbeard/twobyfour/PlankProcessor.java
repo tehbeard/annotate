@@ -34,7 +34,6 @@ public class PlankProcessor extends AbstractProcessor {
             planks = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT , "", "planks.txt", (Element[])null).openWriter();
             serializers = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT , "", "serialize.txt", (Element[])null).openWriter();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -53,7 +52,6 @@ public class PlankProcessor extends AbstractProcessor {
                 planks.write(getPackage(ele) + "\n");
                 planks.flush();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -66,7 +64,6 @@ public class PlankProcessor extends AbstractProcessor {
                 serializers.write(getPackage(ele) + "\n");
                 serializers.flush();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 

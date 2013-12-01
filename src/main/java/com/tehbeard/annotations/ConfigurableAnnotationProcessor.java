@@ -26,7 +26,6 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 		try {
 			classOut = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT, "", "components.txt", (Element[])null).openWriter();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -37,9 +36,12 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 		Set<? extends Element> eles = roundEnv.getElementsAnnotatedWith(Configurable.class);
 		for(Element ele  : eles){
 		    
-		    if(!Utils.typeImplements(processingEnv,ele.asType(),"com.tehbeard.beardach.datasource.configurable.IConfigurable")){
-		        processingEnv.getMessager().printMessage(Kind.NOTE,"Class " + ele.asType() + " does not implement IConfigurable");
-		        throw new RuntimeException("Class " + ele.asType() + " does not implement IConfigurable");
+		    if(
+		            !Utils.typeImplements(processingEnv,ele.asType(),"com.tehbeard.beardach.achievement.triggers.ITrigger") &&
+		            !Utils.typeImplements(processingEnv,ele.asType(),"com.tehbeard.beardach.achievement.rewards.IReward")
+		            ){
+		        processingEnv.getMessager().printMessage(Kind.ERROR,"Class " + ele.asType() + " does not implement ITrigger or IReward");
+		        throw new RuntimeException("Class " + ele.asType() + " does not implement ITrigger or IReward");
 		    }
 		   
 			Configurable c = ele.getAnnotation(Configurable.class);
@@ -53,7 +55,6 @@ public class ConfigurableAnnotationProcessor extends AbstractProcessor {
 				classOut.write(getPackage(ele) + "\n");
 				classOut.flush();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

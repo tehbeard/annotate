@@ -87,7 +87,6 @@ public class PluginProcessor extends AbstractProcessor{
                 yaml.write(yc.saveToString());
                 yaml.flush();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -118,7 +117,6 @@ public class PluginProcessor extends AbstractProcessor{
         yc.set(cb + "description",orNull(cmod.description()));
         yc.set(cb + "aliases",orNull(cmod.alias()));
         yc.set(cb + "permission",orNull(cmod.permission()));
-        //yc.set(cb + "permission-message",orNull(cmod.())); - TODO 
         yc.set(cb + "usage",orNull(cmod.usage()));
     }
 
