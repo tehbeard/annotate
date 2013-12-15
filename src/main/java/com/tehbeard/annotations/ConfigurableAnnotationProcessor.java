@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.*;
-import javax.lang.model.type.TypeMirror;
 import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 
